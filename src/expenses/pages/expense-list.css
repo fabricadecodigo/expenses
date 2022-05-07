@@ -1,0 +1,18 @@
+.expense-container {
+    margin: 1rem 0;
+}
+
+.expense-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;    ;
+}
+
+.expense-card-description {
+    flex: 1;
+}
+
+.expense-card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
