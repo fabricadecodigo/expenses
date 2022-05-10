@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, Button, Form, Navbar, Modal } from 'react-bootstrap';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 
-import './expense-list.css';
-
 interface ExpenseListPageProps {}
 interface IExpense {
   id: string;
@@ -66,46 +64,54 @@ export const ExpenseListPage: FunctionComponent<ExpenseListPageProps> = () => {
   };
 
   return (
-    <div>
-      <Navbar>
+    <>
+      {/* <Navbar>
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
             <Link to='new'>
-              <Button variant='primary'>Nova despesa</Button>
+              
             </Link>
           </Navbar.Text>
         </Navbar.Collapse>
-      </Navbar>
-
-      {expenses.map((expense) => (
-        <Card className='expense-container' key={expense.id}>
-          <Card.Body>
-            <div className='expense-card'>
-              <div>
-                <Form.Check />
-              </div>
-              <div className='expense-card-description'>
-                {expense.dia} - {expense.descricao}
-              </div>
-              <div className='expense-card-actions'>
-                <Link to={`edit/${expense.id}`}>
-                  <Button variant='outline-primary'>
-                    <BsPencil />
+      </Navbar> */}
+      <div className='d-flex justify-content-end mb-3'>
+        <div>
+          <Link to='new'>
+            <Button variant='primary'>Nova despesa</Button>
+          </Link>
+        </div>
+      </div>
+      <div className='d-flex flex-column gap-2'>
+        {expenses.map((expense) => (
+          <Card className='shadow-sm' key={expense.id}>
+            <Card.Body>
+              <div className='d-flex align-items-center gap-3'>
+                <div>
+                  <Form.Check />
+                </div>
+                <div className='flex-grow-1'>
+                  {expense.dia} - {expense.descricao}
+                </div>
+                <div className='d-flex gap-2'>
+                  <Link to={`edit/${expense.id}`}>
+                    <Button variant='outline-primary'>
+                      <BsPencil />
+                    </Button>
+                  </Link>
+                  <Button
+                    variant='outline-danger'
+                    onClick={() => handleCanDelete(expense)}
+                  >
+                    <BsTrash />
                   </Button>
-                </Link>
-                <Button
-                  variant='outline-danger'
-                  onClick={() => handleCanDelete(expense)}
-                >
-                  <BsTrash />
-                </Button>
+                </div>
               </div>
-            </div>
-          </Card.Body>
-        </Card>
-      ))}
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
 
-      <Modal show={showModal} onHide={handleCancelDelete}>
+      <Modal show={showModal} onHide={handleCancelDelete} centered>
         <Modal.Header closeButton>
           <Modal.Title>Excluir despesa</Modal.Title>
         </Modal.Header>
@@ -121,11 +127,11 @@ export const ExpenseListPage: FunctionComponent<ExpenseListPageProps> = () => {
           <Button variant='secondary' onClick={handleCancelDelete}>
             Cancelar
           </Button>
-          <Button variant='danger' onClick={handleDelete}>
+          <Button variant='danger' onClick={handleDelete} autoFocus>
             Excluir despesa
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };

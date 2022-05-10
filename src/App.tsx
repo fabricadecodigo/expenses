@@ -5,8 +5,8 @@ import { Navbar, Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <div>
-      <Navbar bg='light' variant='light'>
+    <>
+      <Navbar bg='dark' variant='dark'>
         <Container>
           <Navbar.Brand as={Link} to='/'>
             Expenses
@@ -14,14 +14,14 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className='container'>
+      <div className='container my-4'>
         <Routes>
           <Route path='/' element={<ExpenseListPage />} />
           <Route path='/new' element={<ExpenseEditPage />} />
           <Route path='/edit/:id' element={<ExpenseEditPage />} />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 
