@@ -1,0 +1,5 @@
+mutation excluirConta($where: ContaWhereUniqueInput!) {
+  deleteConta(where: $where) {
+    id
+  }
+}

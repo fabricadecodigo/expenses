@@ -1,0 +1,8 @@
+mutation criarConta($data: ContaCreateInput!) {
+  createConta(data: $data) {
+    id,
+    dia
+    descricao
+    pago
+  }
+}

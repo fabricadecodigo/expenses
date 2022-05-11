@@ -1,0 +1,11 @@
+mutation atualizarConta($data: ContaUpdateInput!, $where: ContaWhereUniqueInput!) {
+  updateConta(
+    data: $data,
+    where: $where
+  ) {
+    id
+    dia
+    descricao
+    pago
+  }
+}
