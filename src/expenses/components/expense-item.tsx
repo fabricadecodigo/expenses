@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { Card, Button, Form, Spinner, Modal } from 'react-bootstrap';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import {
-  Conta,
-  useAtualizarContaMutation,
-  useExcluirContaMutation,
+  Expense,
+  useUpdateExpenseMutation,
+  useDeleteExpenseMutation,
 } from '../../generated/graphql';
 
 interface ExpenseItemComponentProps {
-  expense: Conta;
+  expense: Expense;
   onDeleteExecuted: () => void;
 }
 
@@ -17,16 +17,18 @@ export const ExpenseItemComponent: FunctionComponent<
   ExpenseItemComponentProps
 > = ({ expense, onDeleteExecuted }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedExpense, setSelectedExpense] = useState<Conta | null>(null);
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
 
-  const [deleteExpense, { loading: deleteLoading }] = useExcluirContaMutation();
-  const [updateExpense, { loading: updateLoading }] = useAtualizarContaMutation();
+  const [deleteExpense, { loading: deleteLoading }] =
+    useDeleteExpenseMutation();
+  const [updateExpense, { loading: updateLoading }] =
+    useUpdateExpenseMutation();
 
-  const handlePayExpense = async (expense: Conta) => {
+  const handlePayExpense = async (expense: Expense) => {
     await updateExpense({
       variables: {
         data: {
-          pago: !expense.pago,
+          paid: !expense.paid,
         },
         where: {
           id: expense.id,
@@ -40,7 +42,7 @@ export const ExpenseItemComponent: FunctionComponent<
     setSelectedExpense(null);
   };
 
-  const openDeleteModal = (expense: Conta) => {
+  const openDeleteModal = (expense: Expense) => {
     setShowModal(true);
     setSelectedExpense(expense);
   };
@@ -65,7 +67,7 @@ export const ExpenseItemComponent: FunctionComponent<
   return (
     <>
       <Card
-        className={`shadow-sm ${expense.pago ? 'bg-light' : ''}`}
+        className={`shadow-sm ${expense.paid ? 'bg-light' : ''}`}
         key={expense.id}
       >
         <Card.Body>
@@ -75,17 +77,17 @@ export const ExpenseItemComponent: FunctionComponent<
                 <Spinner size='sm' animation='border' />
               ) : (
                 <Form.Check
-                  checked={expense.pago}
-                  onChange={() => handlePayExpense(expense as Conta)}
+                  checked={expense.paid}
+                  onChange={() => handlePayExpense(expense as Expense)}
                 />
               )}
             </div>
             <div
               className={`
                 flex-grow-1 
-              ${expense.pago ? 'text-decoration-line-through' : ''}`}
+              ${expense.paid ? 'text-decoration-line-through' : ''}`}
             >
-              {expense.dia} - {expense.descricao}
+              {expense.day} - {expense.description}
             </div>
             <div className='d-flex gap-2'>
               <Link to={`edit/${expense.id}`}>
@@ -95,7 +97,7 @@ export const ExpenseItemComponent: FunctionComponent<
               </Link>
               <Button
                 variant='outline-danger'
-                onClick={() => openDeleteModal(expense as Conta)}
+                onClick={() => openDeleteModal(expense as Expense)}
               >
                 <BsTrash />
               </Button>
@@ -112,7 +114,7 @@ export const ExpenseItemComponent: FunctionComponent<
         <Modal.Body>
           <p>
             Confirma a exclusão da despesa:{' '}
-            <b>{`${selectedExpense?.dia} - ${selectedExpense?.descricao}?`}</b>
+            <b>{`${selectedExpense?.day} - ${selectedExpense?.description}?`}</b>
           </p>
         </Modal.Body>
 

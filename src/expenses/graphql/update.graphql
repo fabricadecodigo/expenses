@@ -1,0 +1,8 @@
+mutation updateExpense($data: ExpenseUpdateInput!, $where: ExpenseWhereUniqueInput!) {
+  updateExpense(data: $data, where: $where) {
+    id
+    day
+    description
+    paid
+  }
+}

@@ -1,0 +1,8 @@
+query expenses {
+  expenses(orderBy: day_ASC) {
+    id
+    day
+    description
+    paid
+  }
+}

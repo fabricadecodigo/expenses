@@ -691,454 +691,6 @@ export type ConnectPositionInput = {
   start?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type Conta = Node & {
-  __typename?: 'Conta';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  descricao: Scalars['String'];
-  dia: Scalars['Int'];
-  /** Get the document in other stages */
-  documentInStages: Array<Conta>;
-  /** List of Conta versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID'];
-  pago: Scalars['Boolean'];
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  /** System stage field */
-  stage: Stage;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
-
-export type ContaCreatedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type ContaDocumentInStagesArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  inheritLocale?: Scalars['Boolean'];
-  stages?: Array<Stage>;
-};
-
-
-export type ContaHistoryArgs = {
-  limit?: Scalars['Int'];
-  skip?: Scalars['Int'];
-  stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type ContaPublishedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type ContaScheduledInArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-
-export type ContaUpdatedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-export type ContaConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: ContaWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type ContaConnection = {
-  __typename?: 'ContaConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<ContaEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type ContaCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  descricao: Scalars['String'];
-  dia: Scalars['Int'];
-  pago: Scalars['Boolean'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type ContaCreateManyInlineInput = {
-  /** Connect multiple existing Conta documents */
-  connect?: InputMaybe<Array<ContaWhereUniqueInput>>;
-  /** Create and connect multiple existing Conta documents */
-  create?: InputMaybe<Array<ContaCreateInput>>;
-};
-
-export type ContaCreateOneInlineInput = {
-  /** Connect one existing Conta document */
-  connect?: InputMaybe<ContaWhereUniqueInput>;
-  /** Create and connect one Conta document */
-  create?: InputMaybe<ContaCreateInput>;
-};
-
-/** An edge in a connection. */
-export type ContaEdge = {
-  __typename?: 'ContaEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
-  /** The item at the end of the edge. */
-  node: Conta;
-};
-
-/** Identifies documents */
-export type ContaManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ContaWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ContaWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ContaWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdBy?: InputMaybe<UserWhereInput>;
-  descricao?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  descricao_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  descricao_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  descricao_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  descricao_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  descricao_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  descricao_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  descricao_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  descricao_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  descricao_starts_with?: InputMaybe<Scalars['String']>;
-  dia?: InputMaybe<Scalars['Int']>;
-  /** All values greater than the given value. */
-  dia_gt?: InputMaybe<Scalars['Int']>;
-  /** All values greater than or equal the given value. */
-  dia_gte?: InputMaybe<Scalars['Int']>;
-  /** All values that are contained in given list. */
-  dia_in?: InputMaybe<Array<Scalars['Int']>>;
-  /** All values less than the given value. */
-  dia_lt?: InputMaybe<Scalars['Int']>;
-  /** All values less than or equal the given value. */
-  dia_lte?: InputMaybe<Scalars['Int']>;
-  /** All values that are not equal to given value. */
-  dia_not?: InputMaybe<Scalars['Int']>;
-  /** All values that are not contained in given list. */
-  dia_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  pago?: InputMaybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  pago_not?: InputMaybe<Scalars['Boolean']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-export enum ContaOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescricaoAsc = 'descricao_ASC',
-  DescricaoDesc = 'descricao_DESC',
-  DiaAsc = 'dia_ASC',
-  DiaDesc = 'dia_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PagoAsc = 'pago_ASC',
-  PagoDesc = 'pago_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
-
-export type ContaUpdateInput = {
-  descricao?: InputMaybe<Scalars['String']>;
-  dia?: InputMaybe<Scalars['Int']>;
-  pago?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type ContaUpdateManyInlineInput = {
-  /** Connect multiple existing Conta documents */
-  connect?: InputMaybe<Array<ContaConnectInput>>;
-  /** Create and connect multiple Conta documents */
-  create?: InputMaybe<Array<ContaCreateInput>>;
-  /** Delete multiple Conta documents */
-  delete?: InputMaybe<Array<ContaWhereUniqueInput>>;
-  /** Disconnect multiple Conta documents */
-  disconnect?: InputMaybe<Array<ContaWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing Conta documents */
-  set?: InputMaybe<Array<ContaWhereUniqueInput>>;
-  /** Update multiple Conta documents */
-  update?: InputMaybe<Array<ContaUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Conta documents */
-  upsert?: InputMaybe<Array<ContaUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type ContaUpdateManyInput = {
-  descricao?: InputMaybe<Scalars['String']>;
-  dia?: InputMaybe<Scalars['Int']>;
-  pago?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type ContaUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: ContaUpdateManyInput;
-  /** Document search */
-  where: ContaWhereInput;
-};
-
-export type ContaUpdateOneInlineInput = {
-  /** Connect existing Conta document */
-  connect?: InputMaybe<ContaWhereUniqueInput>;
-  /** Create and connect one Conta document */
-  create?: InputMaybe<ContaCreateInput>;
-  /** Delete currently connected Conta document */
-  delete?: InputMaybe<Scalars['Boolean']>;
-  /** Disconnect currently connected Conta document */
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  /** Update single Conta document */
-  update?: InputMaybe<ContaUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Conta document */
-  upsert?: InputMaybe<ContaUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ContaUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: ContaUpdateInput;
-  /** Unique document search */
-  where: ContaWhereUniqueInput;
-};
-
-export type ContaUpsertInput = {
-  /** Create document if it didn't exist */
-  create: ContaCreateInput;
-  /** Update document if it exists */
-  update: ContaUpdateInput;
-};
-
-export type ContaUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: ContaUpsertInput;
-  /** Unique document search */
-  where: ContaWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type ContaWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ContaWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ContaWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ContaWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdBy?: InputMaybe<UserWhereInput>;
-  descricao?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  descricao_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  descricao_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  descricao_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  descricao_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  descricao_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  descricao_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  descricao_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  descricao_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  descricao_starts_with?: InputMaybe<Scalars['String']>;
-  dia?: InputMaybe<Scalars['Int']>;
-  /** All values greater than the given value. */
-  dia_gt?: InputMaybe<Scalars['Int']>;
-  /** All values greater than or equal the given value. */
-  dia_gte?: InputMaybe<Scalars['Int']>;
-  /** All values that are contained in given list. */
-  dia_in?: InputMaybe<Array<Scalars['Int']>>;
-  /** All values less than the given value. */
-  dia_lt?: InputMaybe<Scalars['Int']>;
-  /** All values less than or equal the given value. */
-  dia_lte?: InputMaybe<Scalars['Int']>;
-  /** All values that are not equal to given value. */
-  dia_not?: InputMaybe<Scalars['Int']>;
-  /** All values that are not contained in given list. */
-  dia_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  pago?: InputMaybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  pago_not?: InputMaybe<Scalars['Boolean']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-/** References Conta record uniquely */
-export type ContaWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
 export enum DocumentFileTypes {
   Doc = 'doc',
   Docx = 'docx',
@@ -1203,6 +755,454 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export type Expense = Node & {
+  __typename?: 'Expense';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  day: Scalars['Int'];
+  description: Scalars['String'];
+  /** Get the document in other stages */
+  documentInStages: Array<Expense>;
+  /** List of Expense versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  paid: Scalars['Boolean'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ExpenseCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ExpenseDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ExpenseHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ExpensePublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ExpenseScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ExpenseUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ExpenseConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ExpenseWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ExpenseConnection = {
+  __typename?: 'ExpenseConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ExpenseEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ExpenseCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  day: Scalars['Int'];
+  description: Scalars['String'];
+  paid: Scalars['Boolean'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ExpenseCreateManyInlineInput = {
+  /** Connect multiple existing Expense documents */
+  connect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  /** Create and connect multiple existing Expense documents */
+  create?: InputMaybe<Array<ExpenseCreateInput>>;
+};
+
+export type ExpenseCreateOneInlineInput = {
+  /** Connect one existing Expense document */
+  connect?: InputMaybe<ExpenseWhereUniqueInput>;
+  /** Create and connect one Expense document */
+  create?: InputMaybe<ExpenseCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ExpenseEdge = {
+  __typename?: 'ExpenseEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Expense;
+};
+
+/** Identifies documents */
+export type ExpenseManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  day?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  day_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  day_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  day_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  day_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  day_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  day_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  day_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  paid?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  paid_not?: InputMaybe<Scalars['Boolean']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ExpenseOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DayAsc = 'day_ASC',
+  DayDesc = 'day_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PaidAsc = 'paid_ASC',
+  PaidDesc = 'paid_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ExpenseUpdateInput = {
+  day?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  paid?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ExpenseUpdateManyInlineInput = {
+  /** Connect multiple existing Expense documents */
+  connect?: InputMaybe<Array<ExpenseConnectInput>>;
+  /** Create and connect multiple Expense documents */
+  create?: InputMaybe<Array<ExpenseCreateInput>>;
+  /** Delete multiple Expense documents */
+  delete?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  /** Disconnect multiple Expense documents */
+  disconnect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Expense documents */
+  set?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  /** Update multiple Expense documents */
+  update?: InputMaybe<Array<ExpenseUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Expense documents */
+  upsert?: InputMaybe<Array<ExpenseUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ExpenseUpdateManyInput = {
+  day?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  paid?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ExpenseUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ExpenseUpdateManyInput;
+  /** Document search */
+  where: ExpenseWhereInput;
+};
+
+export type ExpenseUpdateOneInlineInput = {
+  /** Connect existing Expense document */
+  connect?: InputMaybe<ExpenseWhereUniqueInput>;
+  /** Create and connect one Expense document */
+  create?: InputMaybe<ExpenseCreateInput>;
+  /** Delete currently connected Expense document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Expense document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Expense document */
+  update?: InputMaybe<ExpenseUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Expense document */
+  upsert?: InputMaybe<ExpenseUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ExpenseUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ExpenseUpdateInput;
+  /** Unique document search */
+  where: ExpenseWhereUniqueInput;
+};
+
+export type ExpenseUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ExpenseCreateInput;
+  /** Update document if it exists */
+  update: ExpenseUpdateInput;
+};
+
+export type ExpenseUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ExpenseUpsertInput;
+  /** Unique document search */
+  where: ExpenseWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ExpenseWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ExpenseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  day?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  day_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  day_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  day_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  day_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  day_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  day_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  day_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  paid?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  paid_not?: InputMaybe<Scalars['Boolean']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References Expense record uniquely */
+export type ExpenseWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -1262,14 +1262,14 @@ export type Mutation = {
    * @deprecated Asset mutations will be overhauled soon
    */
   createAsset?: Maybe<Asset>;
-  /** Create one conta */
-  createConta?: Maybe<Conta>;
+  /** Create one expense */
+  createExpense?: Maybe<Expense>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
-  /** Delete one conta from _all_ existing stages. Returns deleted document. */
-  deleteConta?: Maybe<Conta>;
+  /** Delete one expense from _all_ existing stages. Returns deleted document. */
+  deleteExpense?: Maybe<Expense>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -1278,20 +1278,20 @@ export type Mutation = {
   /** Delete many Asset documents, return deleted documents */
   deleteManyAssetsConnection: AssetConnection;
   /**
-   * Delete many Conta documents
-   * @deprecated Please use the new paginated many mutation (deleteManyContasConnection)
+   * Delete many Expense documents
+   * @deprecated Please use the new paginated many mutation (deleteManyExpensesConnection)
    */
-  deleteManyContas: BatchPayload;
-  /** Delete many Conta documents, return deleted documents */
-  deleteManyContasConnection: ContaConnection;
+  deleteManyExpenses: BatchPayload;
+  /** Delete many Expense documents, return deleted documents */
+  deleteManyExpensesConnection: ExpenseConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
-  /** Publish one conta */
-  publishConta?: Maybe<Conta>;
+  /** Publish one expense */
+  publishExpense?: Maybe<Expense>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -1300,24 +1300,24 @@ export type Mutation = {
   /** Publish many Asset documents */
   publishManyAssetsConnection: AssetConnection;
   /**
-   * Publish many Conta documents
-   * @deprecated Please use the new paginated many mutation (publishManyContasConnection)
+   * Publish many Expense documents
+   * @deprecated Please use the new paginated many mutation (publishManyExpensesConnection)
    */
-  publishManyContas: BatchPayload;
-  /** Publish many Conta documents */
-  publishManyContasConnection: ContaConnection;
+  publishManyExpenses: BatchPayload;
+  /** Publish many Expense documents */
+  publishManyExpensesConnection: ExpenseConnection;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
-  /** Schedule to publish one conta */
-  schedulePublishConta?: Maybe<Conta>;
+  /** Schedule to publish one expense */
+  schedulePublishExpense?: Maybe<Expense>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
-  /** Unpublish one conta from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  scheduleUnpublishConta?: Maybe<Conta>;
+  /** Unpublish one expense from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishExpense?: Maybe<Expense>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
-  /** Unpublish one conta from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishConta?: Maybe<Conta>;
+  /** Unpublish one expense from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishExpense?: Maybe<Expense>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -1326,16 +1326,16 @@ export type Mutation = {
   /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyAssetsConnection: AssetConnection;
   /**
-   * Unpublish many Conta documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyContasConnection)
+   * Unpublish many Expense documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyExpensesConnection)
    */
-  unpublishManyContas: BatchPayload;
-  /** Find many Conta documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyContasConnection: ContaConnection;
+  unpublishManyExpenses: BatchPayload;
+  /** Find many Expense documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyExpensesConnection: ExpenseConnection;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
-  /** Update one conta */
-  updateConta?: Maybe<Conta>;
+  /** Update one expense */
+  updateExpense?: Maybe<Expense>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -1344,18 +1344,18 @@ export type Mutation = {
   /** Update many Asset documents */
   updateManyAssetsConnection: AssetConnection;
   /**
-   * Update many contas
-   * @deprecated Please use the new paginated many mutation (updateManyContasConnection)
+   * Update many expenses
+   * @deprecated Please use the new paginated many mutation (updateManyExpensesConnection)
    */
-  updateManyContas: BatchPayload;
-  /** Update many Conta documents */
-  updateManyContasConnection: ContaConnection;
+  updateManyExpenses: BatchPayload;
+  /** Update many Expense documents */
+  updateManyExpensesConnection: ExpenseConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
-  /** Upsert one conta */
-  upsertConta?: Maybe<Conta>;
+  /** Upsert one expense */
+  upsertExpense?: Maybe<Expense>;
 };
 
 
@@ -1364,8 +1364,8 @@ export type MutationCreateAssetArgs = {
 };
 
 
-export type MutationCreateContaArgs = {
-  data: ContaCreateInput;
+export type MutationCreateExpenseArgs = {
+  data: ExpenseCreateInput;
 };
 
 
@@ -1379,8 +1379,8 @@ export type MutationDeleteAssetArgs = {
 };
 
 
-export type MutationDeleteContaArgs = {
-  where: ContaWhereUniqueInput;
+export type MutationDeleteExpenseArgs = {
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1399,18 +1399,18 @@ export type MutationDeleteManyAssetsConnectionArgs = {
 };
 
 
-export type MutationDeleteManyContasArgs = {
-  where?: InputMaybe<ContaManyWhereInput>;
+export type MutationDeleteManyExpensesArgs = {
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
-export type MutationDeleteManyContasConnectionArgs = {
+export type MutationDeleteManyExpensesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
@@ -1433,9 +1433,9 @@ export type MutationPublishAssetArgs = {
 };
 
 
-export type MutationPublishContaArgs = {
+export type MutationPublishExpenseArgs = {
   to?: Array<Stage>;
-  where: ContaWhereUniqueInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1463,13 +1463,13 @@ export type MutationPublishManyAssetsConnectionArgs = {
 };
 
 
-export type MutationPublishManyContasArgs = {
+export type MutationPublishManyExpensesArgs = {
   to?: Array<Stage>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
-export type MutationPublishManyContasConnectionArgs = {
+export type MutationPublishManyExpensesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -1477,7 +1477,7 @@ export type MutationPublishManyContasConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
@@ -1492,11 +1492,11 @@ export type MutationSchedulePublishAssetArgs = {
 };
 
 
-export type MutationSchedulePublishContaArgs = {
+export type MutationSchedulePublishExpenseArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
-  where: ContaWhereUniqueInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1510,11 +1510,11 @@ export type MutationScheduleUnpublishAssetArgs = {
 };
 
 
-export type MutationScheduleUnpublishContaArgs = {
+export type MutationScheduleUnpublishExpenseArgs = {
   from?: Array<Stage>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
-  where: ContaWhereUniqueInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1526,9 +1526,9 @@ export type MutationUnpublishAssetArgs = {
 };
 
 
-export type MutationUnpublishContaArgs = {
+export type MutationUnpublishExpenseArgs = {
   from?: Array<Stage>;
-  where: ContaWhereUniqueInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1554,13 +1554,13 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
 };
 
 
-export type MutationUnpublishManyContasArgs = {
+export type MutationUnpublishManyExpensesArgs = {
   from?: Array<Stage>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
-export type MutationUnpublishManyContasConnectionArgs = {
+export type MutationUnpublishManyExpensesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -1568,7 +1568,7 @@ export type MutationUnpublishManyContasConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
@@ -1578,9 +1578,9 @@ export type MutationUpdateAssetArgs = {
 };
 
 
-export type MutationUpdateContaArgs = {
-  data: ContaUpdateInput;
-  where: ContaWhereUniqueInput;
+export type MutationUpdateExpenseArgs = {
+  data: ExpenseUpdateInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
@@ -1601,20 +1601,20 @@ export type MutationUpdateManyAssetsConnectionArgs = {
 };
 
 
-export type MutationUpdateManyContasArgs = {
-  data: ContaUpdateManyInput;
-  where?: InputMaybe<ContaManyWhereInput>;
+export type MutationUpdateManyExpensesArgs = {
+  data: ExpenseUpdateManyInput;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
-export type MutationUpdateManyContasConnectionArgs = {
+export type MutationUpdateManyExpensesConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
   before?: InputMaybe<Scalars['ID']>;
-  data: ContaUpdateManyInput;
+  data: ExpenseUpdateManyInput;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ContaManyWhereInput>;
+  where?: InputMaybe<ExpenseManyWhereInput>;
 };
 
 
@@ -1630,9 +1630,9 @@ export type MutationUpsertAssetArgs = {
 };
 
 
-export type MutationUpsertContaArgs = {
-  upsert: ContaUpsertInput;
-  where: ContaWhereUniqueInput;
+export type MutationUpsertExpenseArgs = {
+  upsert: ExpenseUpsertInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -1675,14 +1675,14 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
-  /** Retrieve a single conta */
-  conta?: Maybe<Conta>;
+  /** Retrieve a single expense */
+  expense?: Maybe<Expense>;
   /** Retrieve document version */
-  contaVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple contas */
-  contas: Array<Conta>;
-  /** Retrieve multiple contas using the Relay connection interface */
-  contasConnection: ContaConnection;
+  expenseVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple expenses */
+  expenses: Array<Expense>;
+  /** Retrieve multiple expenses using the Relay connection interface */
+  expensesConnection: ExpenseConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single scheduledOperation */
@@ -1744,41 +1744,41 @@ export type QueryAssetsConnectionArgs = {
 };
 
 
-export type QueryContaArgs = {
+export type QueryExpenseArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
-  where: ContaWhereUniqueInput;
+  where: ExpenseWhereUniqueInput;
 };
 
 
-export type QueryContaVersionArgs = {
+export type QueryExpenseVersionArgs = {
   where: VersionWhereInput;
 };
 
 
-export type QueryContasArgs = {
+export type QueryExpensesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: Array<Locale>;
-  orderBy?: InputMaybe<ContaOrderByInput>;
+  orderBy?: InputMaybe<ExpenseOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
-  where?: InputMaybe<ContaWhereInput>;
+  where?: InputMaybe<ExpenseWhereInput>;
 };
 
 
-export type QueryContasConnectionArgs = {
+export type QueryExpensesConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: Array<Locale>;
-  orderBy?: InputMaybe<ContaOrderByInput>;
+  orderBy?: InputMaybe<ExpenseOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
-  where?: InputMaybe<ContaWhereInput>;
+  where?: InputMaybe<ExpenseWhereInput>;
 };
 
 
@@ -1994,7 +1994,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Conta;
+export type ScheduledOperationAffectedDocument = Asset | Expense;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -3384,219 +3384,219 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type AtualizarContaMutationVariables = Exact<{
-  data: ContaUpdateInput;
-  where: ContaWhereUniqueInput;
+export type CreateExpenseMutationVariables = Exact<{
+  data: ExpenseCreateInput;
 }>;
 
 
-export type AtualizarContaMutation = { __typename?: 'Mutation', updateConta?: { __typename?: 'Conta', id: string, dia: number, descricao: string, pago: boolean } | null };
+export type CreateExpenseMutation = { __typename?: 'Mutation', createExpense?: { __typename?: 'Expense', id: string, day: number, description: string, paid: boolean } | null };
 
-export type ContaQueryVariables = Exact<{
+export type DeleteExpenseMutationVariables = Exact<{
+  where: ExpenseWhereUniqueInput;
+}>;
+
+
+export type DeleteExpenseMutation = { __typename?: 'Mutation', deleteExpense?: { __typename?: 'Expense', id: string } | null };
+
+export type ExpensesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ExpensesQuery = { __typename?: 'Query', expenses: Array<{ __typename?: 'Expense', id: string, day: number, description: string, paid: boolean }> };
+
+export type ExpenseQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ContaQuery = { __typename?: 'Query', conta?: { __typename?: 'Conta', id: string, dia: number, descricao: string, pago: boolean } | null };
+export type ExpenseQuery = { __typename?: 'Query', expense?: { __typename?: 'Expense', id: string, day: number, description: string, paid: boolean } | null };
 
-export type ContasQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type ContasQuery = { __typename?: 'Query', contas: Array<{ __typename?: 'Conta', id: string, dia: number, descricao: string, pago: boolean }> };
-
-export type CriarContaMutationVariables = Exact<{
-  data: ContaCreateInput;
+export type UpdateExpenseMutationVariables = Exact<{
+  data: ExpenseUpdateInput;
+  where: ExpenseWhereUniqueInput;
 }>;
 
 
-export type CriarContaMutation = { __typename?: 'Mutation', createConta?: { __typename?: 'Conta', id: string, dia: number, descricao: string, pago: boolean } | null };
-
-export type ExcluirContaMutationVariables = Exact<{
-  where: ContaWhereUniqueInput;
-}>;
+export type UpdateExpenseMutation = { __typename?: 'Mutation', updateExpense?: { __typename?: 'Expense', id: string, day: number, description: string, paid: boolean } | null };
 
 
-export type ExcluirContaMutation = { __typename?: 'Mutation', deleteConta?: { __typename?: 'Conta', id: string } | null };
-
-
-export const AtualizarContaDocument = gql`
-    mutation atualizarConta($data: ContaUpdateInput!, $where: ContaWhereUniqueInput!) {
-  updateConta(data: $data, where: $where) {
+export const CreateExpenseDocument = gql`
+    mutation createExpense($data: ExpenseCreateInput!) {
+  createExpense(data: $data) {
     id
-    dia
-    descricao
-    pago
+    day
+    description
+    paid
   }
 }
     `;
-export type AtualizarContaMutationFn = Apollo.MutationFunction<AtualizarContaMutation, AtualizarContaMutationVariables>;
+export type CreateExpenseMutationFn = Apollo.MutationFunction<CreateExpenseMutation, CreateExpenseMutationVariables>;
 
 /**
- * __useAtualizarContaMutation__
+ * __useCreateExpenseMutation__
  *
- * To run a mutation, you first call `useAtualizarContaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAtualizarContaMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateExpenseMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateExpenseMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [atualizarContaMutation, { data, loading, error }] = useAtualizarContaMutation({
+ * const [createExpenseMutation, { data, loading, error }] = useCreateExpenseMutation({
  *   variables: {
  *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateExpenseMutation(baseOptions?: Apollo.MutationHookOptions<CreateExpenseMutation, CreateExpenseMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateExpenseMutation, CreateExpenseMutationVariables>(CreateExpenseDocument, options);
+      }
+export type CreateExpenseMutationHookResult = ReturnType<typeof useCreateExpenseMutation>;
+export type CreateExpenseMutationResult = Apollo.MutationResult<CreateExpenseMutation>;
+export type CreateExpenseMutationOptions = Apollo.BaseMutationOptions<CreateExpenseMutation, CreateExpenseMutationVariables>;
+export const DeleteExpenseDocument = gql`
+    mutation deleteExpense($where: ExpenseWhereUniqueInput!) {
+  deleteExpense(where: $where) {
+    id
+  }
+}
+    `;
+export type DeleteExpenseMutationFn = Apollo.MutationFunction<DeleteExpenseMutation, DeleteExpenseMutationVariables>;
+
+/**
+ * __useDeleteExpenseMutation__
+ *
+ * To run a mutation, you first call `useDeleteExpenseMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteExpenseMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteExpenseMutation, { data, loading, error }] = useDeleteExpenseMutation({
+ *   variables: {
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useAtualizarContaMutation(baseOptions?: Apollo.MutationHookOptions<AtualizarContaMutation, AtualizarContaMutationVariables>) {
+export function useDeleteExpenseMutation(baseOptions?: Apollo.MutationHookOptions<DeleteExpenseMutation, DeleteExpenseMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AtualizarContaMutation, AtualizarContaMutationVariables>(AtualizarContaDocument, options);
+        return Apollo.useMutation<DeleteExpenseMutation, DeleteExpenseMutationVariables>(DeleteExpenseDocument, options);
       }
-export type AtualizarContaMutationHookResult = ReturnType<typeof useAtualizarContaMutation>;
-export type AtualizarContaMutationResult = Apollo.MutationResult<AtualizarContaMutation>;
-export type AtualizarContaMutationOptions = Apollo.BaseMutationOptions<AtualizarContaMutation, AtualizarContaMutationVariables>;
-export const ContaDocument = gql`
-    query Conta($id: ID!) {
-  conta(where: {id: $id}) {
+export type DeleteExpenseMutationHookResult = ReturnType<typeof useDeleteExpenseMutation>;
+export type DeleteExpenseMutationResult = Apollo.MutationResult<DeleteExpenseMutation>;
+export type DeleteExpenseMutationOptions = Apollo.BaseMutationOptions<DeleteExpenseMutation, DeleteExpenseMutationVariables>;
+export const ExpensesDocument = gql`
+    query expenses {
+  expenses(orderBy: day_ASC) {
     id
-    dia
-    descricao
-    pago
+    day
+    description
+    paid
   }
 }
     `;
 
 /**
- * __useContaQuery__
+ * __useExpensesQuery__
  *
- * To run a query within a React component, call `useContaQuery` and pass it any options that fit your needs.
- * When your component renders, `useContaQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useExpensesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useExpensesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useContaQuery({
+ * const { data, loading, error } = useExpensesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useExpensesQuery(baseOptions?: Apollo.QueryHookOptions<ExpensesQuery, ExpensesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ExpensesQuery, ExpensesQueryVariables>(ExpensesDocument, options);
+      }
+export function useExpensesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ExpensesQuery, ExpensesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ExpensesQuery, ExpensesQueryVariables>(ExpensesDocument, options);
+        }
+export type ExpensesQueryHookResult = ReturnType<typeof useExpensesQuery>;
+export type ExpensesLazyQueryHookResult = ReturnType<typeof useExpensesLazyQuery>;
+export type ExpensesQueryResult = Apollo.QueryResult<ExpensesQuery, ExpensesQueryVariables>;
+export const ExpenseDocument = gql`
+    query expense($id: ID!) {
+  expense(where: {id: $id}) {
+    id
+    day
+    description
+    paid
+  }
+}
+    `;
+
+/**
+ * __useExpenseQuery__
+ *
+ * To run a query within a React component, call `useExpenseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useExpenseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useExpenseQuery({
  *   variables: {
  *      id: // value for 'id'
  *   },
  * });
  */
-export function useContaQuery(baseOptions: Apollo.QueryHookOptions<ContaQuery, ContaQueryVariables>) {
+export function useExpenseQuery(baseOptions: Apollo.QueryHookOptions<ExpenseQuery, ExpenseQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ContaQuery, ContaQueryVariables>(ContaDocument, options);
+        return Apollo.useQuery<ExpenseQuery, ExpenseQueryVariables>(ExpenseDocument, options);
       }
-export function useContaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContaQuery, ContaQueryVariables>) {
+export function useExpenseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ExpenseQuery, ExpenseQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ContaQuery, ContaQueryVariables>(ContaDocument, options);
+          return Apollo.useLazyQuery<ExpenseQuery, ExpenseQueryVariables>(ExpenseDocument, options);
         }
-export type ContaQueryHookResult = ReturnType<typeof useContaQuery>;
-export type ContaLazyQueryHookResult = ReturnType<typeof useContaLazyQuery>;
-export type ContaQueryResult = Apollo.QueryResult<ContaQuery, ContaQueryVariables>;
-export const ContasDocument = gql`
-    query Contas {
-  contas(orderBy: dia_ASC) {
+export type ExpenseQueryHookResult = ReturnType<typeof useExpenseQuery>;
+export type ExpenseLazyQueryHookResult = ReturnType<typeof useExpenseLazyQuery>;
+export type ExpenseQueryResult = Apollo.QueryResult<ExpenseQuery, ExpenseQueryVariables>;
+export const UpdateExpenseDocument = gql`
+    mutation updateExpense($data: ExpenseUpdateInput!, $where: ExpenseWhereUniqueInput!) {
+  updateExpense(data: $data, where: $where) {
     id
-    dia
-    descricao
-    pago
+    day
+    description
+    paid
   }
 }
     `;
+export type UpdateExpenseMutationFn = Apollo.MutationFunction<UpdateExpenseMutation, UpdateExpenseMutationVariables>;
 
 /**
- * __useContasQuery__
+ * __useUpdateExpenseMutation__
  *
- * To run a query within a React component, call `useContasQuery` and pass it any options that fit your needs.
- * When your component renders, `useContasQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useContasQuery({
- *   variables: {
- *   },
- * });
- */
-export function useContasQuery(baseOptions?: Apollo.QueryHookOptions<ContasQuery, ContasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ContasQuery, ContasQueryVariables>(ContasDocument, options);
-      }
-export function useContasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContasQuery, ContasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ContasQuery, ContasQueryVariables>(ContasDocument, options);
-        }
-export type ContasQueryHookResult = ReturnType<typeof useContasQuery>;
-export type ContasLazyQueryHookResult = ReturnType<typeof useContasLazyQuery>;
-export type ContasQueryResult = Apollo.QueryResult<ContasQuery, ContasQueryVariables>;
-export const CriarContaDocument = gql`
-    mutation criarConta($data: ContaCreateInput!) {
-  createConta(data: $data) {
-    id
-    dia
-    descricao
-    pago
-  }
-}
-    `;
-export type CriarContaMutationFn = Apollo.MutationFunction<CriarContaMutation, CriarContaMutationVariables>;
-
-/**
- * __useCriarContaMutation__
- *
- * To run a mutation, you first call `useCriarContaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCriarContaMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdateExpenseMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateExpenseMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [criarContaMutation, { data, loading, error }] = useCriarContaMutation({
+ * const [updateExpenseMutation, { data, loading, error }] = useUpdateExpenseMutation({
  *   variables: {
  *      data: // value for 'data'
- *   },
- * });
- */
-export function useCriarContaMutation(baseOptions?: Apollo.MutationHookOptions<CriarContaMutation, CriarContaMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CriarContaMutation, CriarContaMutationVariables>(CriarContaDocument, options);
-      }
-export type CriarContaMutationHookResult = ReturnType<typeof useCriarContaMutation>;
-export type CriarContaMutationResult = Apollo.MutationResult<CriarContaMutation>;
-export type CriarContaMutationOptions = Apollo.BaseMutationOptions<CriarContaMutation, CriarContaMutationVariables>;
-export const ExcluirContaDocument = gql`
-    mutation excluirConta($where: ContaWhereUniqueInput!) {
-  deleteConta(where: $where) {
-    id
-  }
-}
-    `;
-export type ExcluirContaMutationFn = Apollo.MutationFunction<ExcluirContaMutation, ExcluirContaMutationVariables>;
-
-/**
- * __useExcluirContaMutation__
- *
- * To run a mutation, you first call `useExcluirContaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useExcluirContaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [excluirContaMutation, { data, loading, error }] = useExcluirContaMutation({
- *   variables: {
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useExcluirContaMutation(baseOptions?: Apollo.MutationHookOptions<ExcluirContaMutation, ExcluirContaMutationVariables>) {
+export function useUpdateExpenseMutation(baseOptions?: Apollo.MutationHookOptions<UpdateExpenseMutation, UpdateExpenseMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ExcluirContaMutation, ExcluirContaMutationVariables>(ExcluirContaDocument, options);
+        return Apollo.useMutation<UpdateExpenseMutation, UpdateExpenseMutationVariables>(UpdateExpenseDocument, options);
       }
-export type ExcluirContaMutationHookResult = ReturnType<typeof useExcluirContaMutation>;
-export type ExcluirContaMutationResult = Apollo.MutationResult<ExcluirContaMutation>;
-export type ExcluirContaMutationOptions = Apollo.BaseMutationOptions<ExcluirContaMutation, ExcluirContaMutationVariables>;
+export type UpdateExpenseMutationHookResult = ReturnType<typeof useUpdateExpenseMutation>;
+export type UpdateExpenseMutationResult = Apollo.MutationResult<UpdateExpenseMutation>;
+export type UpdateExpenseMutationOptions = Apollo.BaseMutationOptions<UpdateExpenseMutation, UpdateExpenseMutationVariables>;

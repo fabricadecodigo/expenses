@@ -1,13 +1,11 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
-import { useContasQuery, Conta } from '../../generated/graphql';
+import { useExpensesQuery, Expense } from '../../generated/graphql';
 import { ExpenseItemComponent } from '../components/expense-item';
 
-interface ExpenseListPageProps {}
-
-export const ExpenseListPage: FunctionComponent<ExpenseListPageProps> = () => {
-  const { data, loading, refetch } = useContasQuery({
+export const ExpenseListPage: FunctionComponent = () => {
+  const { data, loading, refetch } = useExpensesQuery({
     fetchPolicy: 'network-only',
   });
 
@@ -26,24 +24,24 @@ export const ExpenseListPage: FunctionComponent<ExpenseListPageProps> = () => {
             <Spinner animation='border' />
           </div>
         )}
-        {data?.contas
-          .filter((c) => !c.pago)
+        {data?.expenses
+          .filter((e) => !e.paid)
           .map((expense) => (
             <ExpenseItemComponent
               key={expense.id}
-              expense={expense as Conta}
+              expense={expense as Expense}
               onDeleteExecuted={refetch}
             />
           ))}
 
         <h2 className='text-center my-2'>Contas pagas</h2>
 
-        {data?.contas
-          .filter((c) => c.pago)
+        {data?.expenses
+          .filter((e) => e.paid)
           .map((expense) => (
             <ExpenseItemComponent
               key={expense.id}
-              expense={expense as Conta}
+              expense={expense as Expense}
               onDeleteExecuted={refetch}
             />
           ))}

@@ -1,8 +1,0 @@
-query Conta($id: ID!) {
-  conta(where: {id: $id}) {
-    id
-    dia
-    descricao
-    pago
-  }
-}

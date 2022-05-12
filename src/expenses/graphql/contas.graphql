@@ -1,8 +1,0 @@
-query Contas {
-  contas(orderBy: dia_ASC) {
-    id
-    dia
-    descricao
-    pago
-  }
-}

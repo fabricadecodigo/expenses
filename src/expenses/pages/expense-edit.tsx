@@ -2,11 +2,11 @@ import { FormEvent, FunctionComponent, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Spinner } from 'react-bootstrap';
 import {
-  useCriarContaMutation,
-  useAtualizarContaMutation,
-  useContaLazyQuery,
-  ContaCreateInput,
-  ContaUpdateInput,
+  useCreateExpenseMutation,
+  useUpdateExpenseMutation,
+  useExpenseLazyQuery,
+  ExpenseCreateInput,
+  ExpenseUpdateInput,
 } from '../../generated/graphql';
 
 interface ExpenseEditPageProps {}
@@ -15,13 +15,14 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
   const { id } = useParams();
   let navigate = useNavigate();
   const [validated, setValidated] = useState(false);
-  const [dia, setDia] = useState<number>();
-  const [descricao, setDescricao] = useState<string>('');
-  const [pago, setPago] = useState<boolean>(false);
-  const [getExpense, { loading: getLoading }] = useContaLazyQuery();
-  const [createExpense, { loading: createLoading }] = useCriarContaMutation();
+  const [day, setDay] = useState<number>();
+  const [description, setDescription] = useState<string>('');
+  const [paid, setPaid] = useState<boolean>(false);
+  const [getExpense, { loading: getLoading }] = useExpenseLazyQuery();
+  const [createExpense, { loading: createLoading }] =
+    useCreateExpenseMutation();
   const [updateExpense, { loading: updateLoading }] =
-    useAtualizarContaMutation();
+    useUpdateExpenseMutation();
 
   const isLoading = getLoading || createLoading || updateLoading;
 
@@ -32,9 +33,9 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
           id,
         },
       }).then((response) => {
-        setDia(response?.data?.conta?.dia);
-        setDescricao(response?.data?.conta?.descricao || '');
-        setPago(response?.data?.conta?.pago || false);
+        setDay(response?.data?.expense?.day);
+        setDescription(response?.data?.expense?.description || '');
+        setPaid(response?.data?.expense?.paid || false);
       });
     }
   }, [id, getExpense]);
@@ -45,12 +46,12 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
 
     const form = event.currentTarget;
     if (form.checkValidity() === true) {
-      const data = { dia, descricao, pago };
+      const data = { day, description, paid };
       if (id) {
         // atualizar
         await updateExpense({
           variables: {
-            data: { ...data } as ContaUpdateInput,
+            data: { ...data } as ExpenseUpdateInput,
             where: {
               id,
             },
@@ -60,7 +61,7 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
         // criar
         await createExpense({
           variables: {
-            data: { ...data } as ContaCreateInput,
+            data: { ...data } as ExpenseCreateInput,
           },
         });
       }
@@ -79,9 +80,9 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
             required
             min={1}
             max={31}
-            value={dia || ''}
+            value={day || ''}
             onChange={(event) => {
-              setDia(Number(event.target.value));
+              setDay(Number(event.target.value));
             }}
           />
           <Form.Control.Feedback type='invalid'>
@@ -95,9 +96,9 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
             type='text'
             placeholder='Conta de luz'
             required
-            value={descricao}
+            value={description}
             onChange={(event) => {
-              setDescricao(event.target.value);
+              setDescription(event.target.value);
             }}
           />
           <Form.Control.Feedback type='invalid'>
@@ -109,9 +110,9 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
           <Form.Check
             type='checkbox'
             label='Pago'
-            checked={pago}
+            checked={paid}
             onChange={(event) => {
-              setPago(Boolean(event.target.checked));
+              setPaid(Boolean(event.target.checked));
             }}
           />
         </Form.Group>
