@@ -19,12 +19,11 @@ export const ExpenseItemComponent: FunctionComponent<
   const [showModal, setShowModal] = useState(false);
   const [selectedExpense, setSelectedExpense] = useState<Conta | null>(null);
 
-  const [excluirConta, { loading: excluirLoading }] = useExcluirContaMutation();
-  const [atualizarConta, { loading: atualizarLoading }] =
-    useAtualizarContaMutation();
+  const [deleteExpense, { loading: deleteLoading }] = useExcluirContaMutation();
+  const [updateExpense, { loading: updateLoading }] = useAtualizarContaMutation();
 
-  const handlePagarConta = async (expense: Conta) => {
-    await atualizarConta({
+  const handlePayExpense = async (expense: Conta) => {
+    await updateExpense({
       variables: {
         data: {
           pago: !expense.pago,
@@ -49,7 +48,7 @@ export const ExpenseItemComponent: FunctionComponent<
   const handleDelete = async () => {
     // executar a exclusão
     if (selectedExpense) {
-      await excluirConta({
+      await deleteExpense({
         variables: {
           where: {
             id: selectedExpense.id,
@@ -72,12 +71,12 @@ export const ExpenseItemComponent: FunctionComponent<
         <Card.Body>
           <div className='d-flex align-items-center gap-3'>
             <div>
-              {atualizarLoading ? (
+              {updateLoading ? (
                 <Spinner size='sm' animation='border' />
               ) : (
                 <Form.Check
                   checked={expense.pago}
-                  onChange={() => handlePagarConta(expense as Conta)}
+                  onChange={() => handlePayExpense(expense as Conta)}
                 />
               )}
             </div>
@@ -121,7 +120,7 @@ export const ExpenseItemComponent: FunctionComponent<
           <Button
             variant='secondary'
             onClick={closeDeleteModal}
-            disabled={excluirLoading}
+            disabled={deleteLoading}
           >
             Cancelar
           </Button>
@@ -129,9 +128,9 @@ export const ExpenseItemComponent: FunctionComponent<
             variant='danger'
             onClick={handleDelete}
             autoFocus
-            disabled={excluirLoading}
+            disabled={deleteLoading}
           >
-            {excluirLoading && <Spinner size='sm' animation='border' />} Excluir
+            {deleteLoading && <Spinner size='sm' animation='border' />} Excluir
             despesa
           </Button>
         </Modal.Footer>

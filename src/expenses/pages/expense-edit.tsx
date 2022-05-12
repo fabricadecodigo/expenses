@@ -18,14 +18,16 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
   const [dia, setDia] = useState<number>();
   const [descricao, setDescricao] = useState<string>('');
   const [pago, setPago] = useState<boolean>(false);
-  const [getConta, { loading: getLoading }] = useContaLazyQuery();
-  const [criarConta, { loading: criarLoading }] = useCriarContaMutation();
-  const [atualizarConta, { loading: atualizarLoading }] =
+  const [getExpense, { loading: getLoading }] = useContaLazyQuery();
+  const [createExpense, { loading: createLoading }] = useCriarContaMutation();
+  const [updateExpense, { loading: updateLoading }] =
     useAtualizarContaMutation();
+
+  const isLoading = getLoading || createLoading || updateLoading;
 
   useEffect(() => {
     if (id) {
-      getConta({
+      getExpense({
         variables: {
           id,
         },
@@ -35,7 +37,7 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
         setPago(response?.data?.conta?.pago || false);
       });
     }
-  }, [id, getConta]);
+  }, [id, getExpense]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,7 +48,7 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
       const data = { dia, descricao, pago };
       if (id) {
         // atualizar
-        await atualizarConta({
+        await updateExpense({
           variables: {
             data: { ...data } as ContaUpdateInput,
             where: {
@@ -56,7 +58,7 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
         });
       } else {
         // criar
-        await criarConta({
+        await createExpense({
           variables: {
             data: { ...data } as ContaCreateInput,
           },
@@ -114,15 +116,8 @@ export const ExpenseEditPage: FunctionComponent<ExpenseEditPageProps> = () => {
           />
         </Form.Group>
         <div className='d-grid d-md-block'>
-          <Button
-            variant='primary'
-            type='submit'
-            disabled={criarLoading || atualizarLoading || getLoading}
-          >
-            {(criarLoading || atualizarLoading || getLoading) && (
-              <Spinner size='sm' animation='border' />
-            )}{' '}
-            Salvar
+          <Button variant='primary' type='submit' disabled={isLoading}>
+            {isLoading && <Spinner size='sm' animation='border' />} Salvar
           </Button>
         </div>
       </Form>

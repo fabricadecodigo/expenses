@@ -9,7 +9,7 @@ function App() {
       <Navbar bg='dark' variant='dark'>
         <Container>
           <Navbar.Brand as={Link} to='/'>
-            Expenses
+            Minhas despesas
           </Navbar.Brand>
         </Container>
       </Navbar>
