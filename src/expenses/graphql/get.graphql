@@ -1,0 +1,8 @@
+query expense($id: ID!) {
+  expense(where: {id: $id}) {
+    id
+    day
+    description
+    paid
+  }
+}

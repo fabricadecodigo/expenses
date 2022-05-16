@@ -1,0 +1,8 @@
+mutation createExpense($data: ExpenseCreateInput!) {
+  createExpense(data: $data) {
+    id,
+    day
+    description
+    paid
+  }
+}
