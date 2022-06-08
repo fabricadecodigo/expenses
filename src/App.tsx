@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import { ExpenseEditPage } from './expenses/pages/expense-edit';
-import { ExpenseListPage } from './expenses/pages/expense-list';
+import { ExpenseEditPage } from './expenses/pages/expense-edit.page';
+import { ExpenseListPage } from './expenses/pages/expense-list.page';
 import { Navbar, Container } from 'react-bootstrap';
 
 function App() {
