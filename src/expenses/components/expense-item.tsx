@@ -1,104 +1,82 @@
-import { FunctionComponent, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Button, Form, Spinner, Modal } from 'react-bootstrap';
-import { BsPencil, BsTrash } from 'react-icons/bs';
-import {
-  Expense,
-  useUpdateExpenseMutation,
-  useDeleteExpenseMutation,
-} from '../../generated/graphql';
+import { FunctionComponent, useState } from "react";
+import { Link } from "react-router-dom";
+import { Card, Button, Form, Spinner, Modal } from "react-bootstrap";
+import { BsPencil, BsTrash } from "react-icons/bs";
+import { Expense } from "../../generated/graphql";
 
 interface ExpenseItemComponentProps {
   expense: Expense;
-  onDeleteExecuted: () => void;
+  onDeleteClicked: (expense: Expense) => Promise<void>;
+  onUpdateClicked: (expense: Expense) => Promise<void>;
 }
 
 export const ExpenseItemComponent: FunctionComponent<
   ExpenseItemComponentProps
-> = ({ expense, onDeleteExecuted }) => {
+> = ({ expense, onDeleteClicked: onDeleteExecuted, onUpdateClicked: onUpdateExecuted }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const [deleteExpense, { loading: deleteLoading }] =
-    useDeleteExpenseMutation();
-  const [updateExpense, { loading: updateLoading }] =
-    useUpdateExpenseMutation();
+  const handleUpdate = async (expense: Expense) => {
+    try {
+      setUpdateLoading(true);
+      expense.paid = !expense.paid;
+      await onUpdateExecuted(expense);
+    } finally {
+      setUpdateLoading(false);
+    }
+  };
 
-  const handlePayExpense = async (expense: Expense) => {
-    await updateExpense({
-      variables: {
-        data: {
-          paid: !expense.paid,
-        },
-        where: {
-          id: expense.id,
-        },
-      },
-    });
+  const handleDelete = async (expense: Expense) => {
+    try {
+      setDeleteLoading(true);
+      await onDeleteExecuted(expense);
+    } finally {
+      setShowModal(false);
+      setDeleteLoading(false);
+    }
   };
 
   const closeDeleteModal = () => {
     setShowModal(false);
-    setSelectedExpense(null);
   };
 
-  const openDeleteModal = (expense: Expense) => {
+  const openDeleteModal = () => {
     setShowModal(true);
-    setSelectedExpense(expense);
-  };
-
-  const handleDelete = async () => {
-    // executar a exclusão
-    if (selectedExpense) {
-      await deleteExpense({
-        variables: {
-          where: {
-            id: selectedExpense.id,
-          },
-        },
-      });
-      setSelectedExpense(null);
-      onDeleteExecuted();
-    }
-
-    setShowModal(false);
   };
 
   return (
     <>
       <Card
-        className={`shadow-sm ${expense.paid ? 'bg-light' : ''}`}
+        className={`shadow-sm ${expense.paid ? "bg-light" : ""}`}
         key={expense.id}
       >
         <Card.Body>
-          <div className='d-flex align-items-center gap-3'>
+          <div className="d-flex align-items-center gap-3">
             <div>
               {updateLoading ? (
-                <Spinner size='sm' animation='border' />
+                <Spinner size="sm" animation="border" />
               ) : (
                 <Form.Check
                   checked={expense.paid}
-                  onChange={() => handlePayExpense(expense as Expense)}
+                  onChange={() => handleUpdate(expense)}
                 />
               )}
             </div>
             <div
               className={`
                 flex-grow-1 
-              ${expense.paid ? 'text-decoration-line-through' : ''}`}
+              ${expense.paid ? "text-decoration-line-through" : ""}`}
             >
               {expense.day} - {expense.description}
             </div>
-            <div className='d-flex gap-2'>
+            <div className="d-flex gap-2">
               <Link to={`edit/${expense.id}`}>
-                <Button variant='outline-primary'>
+                <Button variant="outline-primary">
                   <BsPencil />
                 </Button>
               </Link>
-              <Button
-                variant='outline-danger'
-                onClick={() => openDeleteModal(expense as Expense)}
-              >
+              <Button variant="outline-danger" onClick={openDeleteModal}>
                 <BsTrash />
               </Button>
             </div>
@@ -113,26 +91,26 @@ export const ExpenseItemComponent: FunctionComponent<
 
         <Modal.Body>
           <p>
-            Confirma a exclusão da despesa:{' '}
-            <b>{`${selectedExpense?.day} - ${selectedExpense?.description}?`}</b>
+            Confirma a exclusão da despesa:{" "}
+            <b>{`${expense?.day} - ${expense?.description}?`}</b>
           </p>
         </Modal.Body>
 
         <Modal.Footer>
           <Button
-            variant='secondary'
+            variant="secondary"
             onClick={closeDeleteModal}
             disabled={deleteLoading}
           >
             Cancelar
           </Button>
           <Button
-            variant='danger'
-            onClick={handleDelete}
+            variant="danger"
+            onClick={() => handleDelete(expense)}
             autoFocus
             disabled={deleteLoading}
           >
-            {deleteLoading && <Spinner size='sm' animation='border' />} Excluir
+            {deleteLoading && <Spinner size="sm" animation="border" />} Excluir
             despesa
           </Button>
         </Modal.Footer>

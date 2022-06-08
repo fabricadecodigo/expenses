@@ -3410,6 +3410,11 @@ export type ExpenseQueryVariables = Exact<{
 
 export type ExpenseQuery = { __typename?: 'Query', expense?: { __typename?: 'Expense', id: string, day: number, description: string, paid: boolean } | null };
 
+export type RestartExpensesMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RestartExpensesMutation = { __typename?: 'Mutation', updateManyExpenses: { __typename?: 'BatchPayload', count: any } };
+
 export type UpdateExpenseMutationVariables = Exact<{
   data: ExpenseUpdateInput;
   where: ExpenseWhereUniqueInput;
@@ -3563,6 +3568,38 @@ export function useExpenseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ex
 export type ExpenseQueryHookResult = ReturnType<typeof useExpenseQuery>;
 export type ExpenseLazyQueryHookResult = ReturnType<typeof useExpenseLazyQuery>;
 export type ExpenseQueryResult = Apollo.QueryResult<ExpenseQuery, ExpenseQueryVariables>;
+export const RestartExpensesDocument = gql`
+    mutation restartExpenses {
+  updateManyExpenses(data: {paid: false}, where: {paid: true}) {
+    count
+  }
+}
+    `;
+export type RestartExpensesMutationFn = Apollo.MutationFunction<RestartExpensesMutation, RestartExpensesMutationVariables>;
+
+/**
+ * __useRestartExpensesMutation__
+ *
+ * To run a mutation, you first call `useRestartExpensesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRestartExpensesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [restartExpensesMutation, { data, loading, error }] = useRestartExpensesMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRestartExpensesMutation(baseOptions?: Apollo.MutationHookOptions<RestartExpensesMutation, RestartExpensesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RestartExpensesMutation, RestartExpensesMutationVariables>(RestartExpensesDocument, options);
+      }
+export type RestartExpensesMutationHookResult = ReturnType<typeof useRestartExpensesMutation>;
+export type RestartExpensesMutationResult = Apollo.MutationResult<RestartExpensesMutation>;
+export type RestartExpensesMutationOptions = Apollo.BaseMutationOptions<RestartExpensesMutation, RestartExpensesMutationVariables>;
 export const UpdateExpenseDocument = gql`
     mutation updateExpense($data: ExpenseUpdateInput!, $where: ExpenseWhereUniqueInput!) {
   updateExpense(data: $data, where: $where) {

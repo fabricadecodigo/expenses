@@ -1,0 +1,5 @@
+mutation restartExpenses {
+  updateManyExpenses(data: { paid: false }, where: { paid: true }) {
+    count
+  }
+}
